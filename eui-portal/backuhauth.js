@@ -45,7 +45,7 @@ return null;
     }
     var dateEl = document.querySelector('input[type="string"]');
     if (dateEl) return dateEl;
-    var gpaEl = document.querySelector('input[placeholder*="GPA"], input[placeholder*="gpa"], input[type="number"]');
+    var gpaEl = document.querySelector('input[placeholder*="passy"], input[placeholder*="passy"], input[type="string"]');
     if (gpaEl) return gpaEl;
     return null;
   }

